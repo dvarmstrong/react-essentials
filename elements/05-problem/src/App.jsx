@@ -13,16 +13,20 @@ const review = {
 // If no author, hide entire Review
 // If good review, show ReviewRating, otherwise hide it. In place of review content, say "No review".
 export default function GoodReview() {
+
+  const isGoodReview = review.rating >= 4;
+
+
   return (
     <div className="review">
       <div className="review-wrapper">
-        <img className="review-avatar" />
+        <img className="review-avatar" src={review.avatarSrc} alt={review.author} />
         <div className="review-left">
-          <h4 className="review-author"></h4>
-          <ReviewRating review={review} />
+          <h4 className="review-author">{review.author}</h4>
+          <ReviewRating review={review.rating} />
         </div>
       </div>
-      <div className="review-content"></div>
+      <div className="review-content">{review.content}</div>
     </div>
   );
 }
