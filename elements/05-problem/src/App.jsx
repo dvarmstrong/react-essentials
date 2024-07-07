@@ -1,7 +1,7 @@
 import { StarIcon } from "@heroicons/react/20/solid";
 
 const review = {
-  rating: 2,
+  rating: 4,
   content:
     "I really loved this product, but then I took it out of the box and realized I didn't like it at all.",
   author: "Emily Selman",
@@ -16,6 +16,10 @@ export default function GoodReview() {
 
   const isGoodReview = review.rating >= 4;
 
+  if (!review.author) {
+    return null;
+  }
+
 
   return (
     <div className="review">
@@ -23,10 +27,10 @@ export default function GoodReview() {
         <img className="review-avatar" src={review.avatarSrc} alt={review.author} />
         <div className="review-left">
           <h4 className="review-author">{review.author}</h4>
-          <ReviewRating review={review.rating} />
+         { isGoodReview ? <ReviewRating review={review}  /> : null }
         </div>
       </div>
-      <div className="review-content">{review.content}</div>
+      <div className="review-content">{isGoodReview ? review.content : "No review"}</div>
     </div>
   );
 }
@@ -35,7 +39,11 @@ function ReviewRating({ review }) {
   return (
     <div className="review-rating">
       {[0, 1, 2, 3, 4].map((rating) => (
-        <StarIcon className="review-star" />
+        <StarIcon 
+          className="review-star"
+          style={{ color: rating < review.rating ? "gold" : "gray" }}
+
+         />
       ))}
     </div>
   );
