@@ -41,22 +41,24 @@ export default function PinnedProjects() {
     <div className="projects-wrapper">
       <h2 className="projects-title">Pinned Projects</h2>
       <ul className="projects-list">
-        <li className="project-list-item">
-          <div className={` project-initials`}>AB</div>
-          <div className="project-content-wrapper">
-            <div className="project-content">
-              <a href="#" className="project-link">
-                Name
-              </a>
-              <p className="project-members">0 Members</p>
+        { projects.filter(project => project.isPinned).map(project => (
+          <li key={project.initials} className="project-list-item">
+            <div className={`project-initials ${project.bgColor}`}>{project.initials}</div>
+            <div className="project-content-wrapper">
+              <div className="project-content">
+                <a href={project.href} className="project-link">
+                  {project.name}
+                </a>
+                <p className="project-members">{project.members} Members</p>
+              </div>
+              <div className="project-button-wrapper">
+                <button type="button" className="project-button">
+                  <EllipsisVerticalIcon className="project-icon" />
+                </button>
+              </div>
             </div>
-            <div className="project-button-wrapper">
-              <button type="button" className="project-button">
-                <EllipsisVerticalIcon className="project-icon" />
-              </button>
-            </div>
-          </div>
-        </li>
+          </li>
+        )) }
       </ul>
     </div>
   );

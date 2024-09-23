@@ -4,7 +4,7 @@
   "private": true,
   "dependencies": {
     "@heroicons/react": "^2.0.18",
-    "react": "^18.2.0",
+    "react": "file:",
     "react-dom": "^18.2.0"
   },
   "scripts": {
